@@ -1,0 +1,22 @@
+name: AwayFromKeyboard
+main: com.jaoafa.AwayFromKeyboard.Main
+version: debugVersion
+description: General Plugin Version 3
+author: mine_book000
+database: true
+commands:
+  afk:
+    description: AFK(Away From Keyboard)モードをオン・オフにします。
+    usage: |
+      /afk: AFK(Away From Keyboard)モードをオン・オフにします。(トグル)
+      /afk <Message>: AFK(Away From Keyboard)モードをメッセージ付きでオンにします。
+      /afk <Player>: 指定したPlayerのAFK情報を表示します。
+    permission: afk.afk
+  afkparticle:
+    description: AFK時に表示されるパーティクルを変更できます。
+    usage: /afkparticle [Particle]
+    permission: afk.afkparticle
+  part:
+    description: part
+    usage: part
+    permission: afk.part
