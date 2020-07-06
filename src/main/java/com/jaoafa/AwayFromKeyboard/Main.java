@@ -7,6 +7,7 @@ import com.jaoafa.AwayFromKeyboard.Command.Cmd_AFK;
 import com.jaoafa.AwayFromKeyboard.Command.Cmd_AFKParticle;
 import com.jaoafa.AwayFromKeyboard.Command.Cmd_Part;
 import com.jaoafa.AwayFromKeyboard.Event.Event_AFK;
+import com.jaoafa.AwayFromKeyboard.Event.Event_DiscordReady;
 import com.jaoafa.AwayFromKeyboard.Library.MySQLDBManager;
 import com.jaoafa.AwayFromKeyboard.Task.Task_AFK;
 
@@ -19,7 +20,8 @@ import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
 public class Main extends JavaPlugin {
 	static Main main;
 	static JDA JDA;
-	static TextChannel ServerChatChannel;
+	public static String ServerChatID;
+	public static TextChannel ServerChatChannel;
 	static MySQLDBManager MySQLDBManager;
 
 	/**
@@ -47,6 +49,8 @@ public class Main extends JavaPlugin {
 					.setContextEnabled(false)
 					.setEventManager(new AnnotatedEventManager());
 
+			jdabuilder.addEventListeners(new Event_DiscordReady());
+
 			JDA = jdabuilder.build().awaitReady();
 		} catch (Exception e) {
 			getLogger().warning("Discordへの接続に失敗しました。(" + e.getMessage() + ")");
@@ -56,7 +60,8 @@ public class Main extends JavaPlugin {
 		}
 
 		if (config.contains("serverchatid")) {
-			ServerChatChannel = JDA.getTextChannelById(config.getString("serverchatid"));
+			ServerChatID = config.getString("serverchatid");
+			ServerChatChannel = JDA.getTextChannelById(ServerChatID);
 		}
 
 		if (!config.contains("sqlserver") || !config.contains("sqlport") || !config.contains("sqldatabase")
