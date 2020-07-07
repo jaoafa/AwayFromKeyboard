@@ -99,6 +99,8 @@ public class AFKPlayer {
 			} else {
 				Main.ServerChatChannel().sendMessage(Library.DiscordEscape(player.getName()) + " is afk!").queue();
 			}
+		} else {
+			Main.ServerChatChannel = Main.getJDA().getTextChannelById(Main.ServerChatID);
 		}
 	}
 
@@ -130,6 +132,8 @@ public class AFKPlayer {
 		if (Main.ServerChatChannel() != null) {
 			Main.ServerChatChannel().sendMessage(Library.DiscordEscape(player.getName()) + " is now online!")
 					.queue();
+		} else {
+			Main.ServerChatChannel = Main.getJDA().getTextChannelById(Main.ServerChatID);
 		}
 	}
 

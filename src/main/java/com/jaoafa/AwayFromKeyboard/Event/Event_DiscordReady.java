@@ -9,5 +9,10 @@ public class Event_DiscordReady {
 	@SubscribeEvent
 	public void onReadyEvent(ReadyEvent event) {
 		Main.ServerChatChannel = event.getJDA().getTextChannelById(Main.ServerChatID);
+		if (Main.ServerChatChannel != null) {
+			System.out.println("Main.ServerChatChannel != null. found.");
+		} else {
+			System.out.println("Main.ServerChatChannel == null. not found.");
+		}
 	}
 }
