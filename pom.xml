@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.jaoafa</groupId>
-  <artifactId>AwayFromKeyboard</artifactId>
-  <version>0.0.1</version>
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.jaoafa</groupId>
+	<artifactId>AwayFromKeyboard</artifactId>
+	<version>0.0.1</version>
+	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -62,6 +64,10 @@
 			<id>jcenter</id>
 			<url>https://jcenter.bintray.com</url>
 		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
 		<!-- jao Super Achievement2 -->
 		<repository>
 			<id>jSA2 maven-repo</id>
@@ -85,7 +91,7 @@
 		<dependency>
 			<groupId>net.dv8tion</groupId>
 			<artifactId>JDA</artifactId>
-			<version>4.0.0_54</version>
+			<version>4.2.0_180</version>
 			<exclusions>
 				<exclusion>
 					<groupId>club.minnced</groupId>
@@ -95,12 +101,10 @@
 		</dependency>
 		<!-- TitleAPI -->
 		<dependency>
-			<groupId>com.connorlinfoot</groupId>
+			<groupId>com.github.ConnorLinfoot</groupId>
 			<artifactId>TitleAPI</artifactId>
-			<version>1.7.5</version>
-			<classifier>shaded</classifier>
-			<systemPath>${basedir}/lib/TitleAPI.jar</systemPath>
-			<scope>system</scope>
+			<version>1.7.6</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- jao Super Achievement2 -->
 		<dependency>
