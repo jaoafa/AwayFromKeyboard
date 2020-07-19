@@ -6,11 +6,11 @@ import java.util.List;
 public class Library {
 	static AFKParticle[] particles = new AFKParticle[] {
 			AFKParticle.FLAME,
-			AFKParticle.EXPLOSION_HUGE,
-			AFKParticle.EXPLOSION_LARGE,
 			AFKParticle.LAVA,
 			AFKParticle.VILLAGER_ANGRY,
 			AFKParticle.HEART,
+			AFKParticle.EXPLOSION_HUGE,
+			AFKParticle.EXPLOSION_LARGE,
 			AFKParticle.SMOKE_LARGE,
 			AFKParticle.NOTE,
 			AFKParticle.DAMAGE_INDICATOR,

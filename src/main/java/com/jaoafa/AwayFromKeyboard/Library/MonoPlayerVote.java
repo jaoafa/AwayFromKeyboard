@@ -73,7 +73,11 @@ public class MonoPlayerVote {
 			Connection conn = Main.getMySQLDBManager().getConnection();
 			PreparedStatement statement = conn
 					.prepareStatement("UPDATE vote_monocraft SET afkparticle = ? WHERE uuid = ?");
-			statement.setString(1, selectedParticle.name());
+			if (selectedParticle == null) {
+				statement.setString(1, null);
+			} else {
+				statement.setString(1, selectedParticle.name());
+			}
 			statement.setString(2, player.getUniqueId().toString());
 			statement.executeUpdate();
 			statement.close();

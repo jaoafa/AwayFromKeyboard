@@ -1,5 +1,6 @@
 package com.jaoafa.AwayFromKeyboard.Library;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,6 +77,11 @@ public class AFKPlayer {
 		this.message = message;
 
 		AFKParticle particle = mpv.getSelectedParticle();
+		AFKParticle[] availableParts = Library.getAvailableAFKParticle(mpv.getVoteCount());
+		if (!Arrays.asList(availableParts).contains(particle)) {
+			particle = null;
+			mpv.setSelectedParticle(null);
+		}
 		if (particle == null) {
 			particle = Library.getAvailableLastAFKParticle(mpv.getVoteCount());
 		}

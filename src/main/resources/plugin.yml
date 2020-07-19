@@ -14,7 +14,10 @@ commands:
     permission: afk.afk
   afkparticle:
     description: AFK時に表示されるパーティクルを変更できます。
-    usage: /afkparticle [Particle]
+    usage: |
+      /afkparticle: 使用可能なパーティクルの一覧が表示されます。
+      /afkparticle <Particle>: パーティクルをParticleに変更します。
+      /afkparticle null: パーティクルの設定をリセットします。
     permission: afk.afkparticle
   part:
     description: part

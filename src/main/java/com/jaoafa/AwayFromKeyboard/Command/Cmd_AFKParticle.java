@@ -36,6 +36,12 @@ public class Cmd_AFKParticle implements CommandExecutor, TabCompleter {
 			return true;
 		}
 
+		if (args[0].equalsIgnoreCase("null")) {
+			mpv.setSelectedParticle(null);
+			sender.sendMessage("[AFKParticle] " + ChatColor.GREEN + "AFKパーティクルをリセットしました。最後に解放されたものが自動的に選択されます。");
+			return true;
+		}
+
 		AFKParticle particle = AFKParticle.fromString(args[0]);
 		if (particle == null) {
 			sender.sendMessage("[AFKParticle] " + ChatColor.GREEN + "指定されたパーティクルは存在しないか利用できません。");
