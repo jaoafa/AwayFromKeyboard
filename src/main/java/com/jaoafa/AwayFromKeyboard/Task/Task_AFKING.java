@@ -9,8 +9,8 @@ import com.jaoafa.AwayFromKeyboard.Library.AFKParticle;
 import com.jaoafa.AwayFromKeyboard.Library.AFKPlayer;
 
 public class Task_AFKING extends BukkitRunnable {
-	private Player player;
-	private AFKParticle particle;
+	private final Player player;
+	private final AFKParticle particle;
 
 	public Task_AFKING(Player player, AFKParticle particle) {
 		this.player = player;

@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
 import com.connorlinfoot.titleapi.TitleAPI;
@@ -23,7 +24,7 @@ import com.jaoafa.jaoSuperAchievement2.Lib.AchievementType;
 public class AFKPlayer {
 	static Map<String, AFKPlayer> players = new HashMap<>();
 
-	private Player player;
+	private final Player player;
 	private boolean isAFKing = false;
 	private long AFKStartTime = -1L;
 	private BukkitTask Task = null;
@@ -97,6 +98,13 @@ public class AFKPlayer {
 			}
 		}
 
+		if(player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE) && jsa != null && jsa.isEnabled()){
+			if (!Achievementjao.getAchievement(player, new AchievementType(67))) {
+				player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
+				return;
+			}
+		}
+
 		if (Main.ServerChatChannel() != null) {
 			if (message != null) {
 				Main.ServerChatChannel()
@@ -112,7 +120,7 @@ public class AFKPlayer {
 
 	public void end() {
 		isAFKing = false;
-		if (Task == null || Task.isCancelled()) {
+		if (Task != null && !Task.isCancelled()) {
 			Task.cancel();
 			Task = null;
 		}
@@ -147,9 +155,7 @@ public class AFKPlayer {
 		if (isAFKing) {
 			end();
 		}
-		if (players.containsKey(player.getName())) {
-			players.remove(player.getName());
-		}
+		players.remove(player.getName());
 	}
 
 	public boolean isAFK() {

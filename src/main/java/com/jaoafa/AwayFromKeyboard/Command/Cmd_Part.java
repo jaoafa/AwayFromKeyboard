@@ -19,6 +19,13 @@ public class Cmd_Part implements CommandExecutor {
 			return true;
 		}
 		try {
+			int count = Integer.parseInt(args[1]);
+			double extra = Double.parseDouble(args[2]);
+			long tick = Long.parseLong(args[3]);
+			double offsetX = Double.parseDouble(args[4]);
+			double offsetY = Double.parseDouble(args[5]);
+			double offsetZ = Double.parseDouble(args[6]);
+			double spawnOffset = Double.parseDouble(args[7]);
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 
@@ -29,13 +36,6 @@ public class Cmd_Part implements CommandExecutor {
 				}
 
 				Location loc = player.getLocation();
-				int count = Integer.parseInt(args[1]);
-				double extra = Double.parseDouble(args[2]);
-				long tick = Long.parseLong(args[3]);
-				double offsetX = Double.parseDouble(args[4]);
-				double offsetY = Double.parseDouble(args[5]);
-				double offsetZ = Double.parseDouble(args[6]);
-				double spawnOffset = Double.parseDouble(args[7]);
 
 				(new Task_Part(loc, particle, count, extra, offsetX, offsetY, offsetZ, spawnOffset))
 						.runTaskTimer(Main.getJavaPlugin(), 0L, tick);
@@ -52,13 +52,6 @@ public class Cmd_Part implements CommandExecutor {
 				}
 
 				Location loc = bcs.getBlock().getLocation().add(0.0D, 1.0D, 0.0D);
-				int count = Integer.parseInt(args[1]);
-				double extra = Double.parseDouble(args[2]);
-				long tick = Long.parseLong(args[3]);
-				double offsetX = Double.parseDouble(args[4]);
-				double offsetY = Double.parseDouble(args[5]);
-				double offsetZ = Double.parseDouble(args[6]);
-				double spawnOffset = Double.parseDouble(args[7]);
 
 				new Task_Part(loc, particle, count, extra, offsetX, offsetY, offsetZ, spawnOffset)
 						.runTaskTimer(Main.getJavaPlugin(), 0L, tick);

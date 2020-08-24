@@ -6,8 +6,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.jaoafa.AwayFromKeyboard.Library.AFKParticle;
 
 public class Task_Part extends BukkitRunnable {
-	private Location loc;
-	private AFKParticle particle;
+	private final Location loc;
+	private final AFKParticle particle;
 	int count;
 	double extra;
 	double offsetX;

@@ -25,8 +25,7 @@ public class Cmd_AFK implements CommandExecutor {
 				Map<String, AFKPlayer> list = AFKPlayer.getAFKPlayers();
 				sender.sendMessage("[AFK]" + ChatColor.GREEN + "データ数: " + list.size());
 				for (Entry<String, AFKPlayer> player : list.entrySet()) {
-					sender.sendMessage("[AFK]" + ChatColor.GREEN +
-							player.getKey() + " | afking: " + Boolean.toString(player.getValue().isAFK()));
+					sender.sendMessage("[AFK]" + ChatColor.GREEN + player.getKey() + " | afking: " + player.getValue().isAFK());
 				}
 				return true;
 			}
@@ -54,30 +53,30 @@ public class Cmd_AFK implements CommandExecutor {
 				int year = (int) (sa / 31536000L);
 				int year_remain = (int) (sa % 31536000L);
 				if (year != 0) {
-					builder.append(year + "年");
+					builder.append(year).append("年");
 				}
 				int month = (int) (year_remain / 2592000L);
 				int month_remain = (int) (year_remain % 2592000L);
 				if (month != 0) {
-					builder.append(month + "か月");
+					builder.append(month).append("か月");
 				}
 				int day = (int) (month_remain / 86400L);
 				int day_remain = (int) (month_remain % 86400L);
 				if (day != 0) {
-					builder.append(day + "日");
+					builder.append(day).append("日");
 				}
 				int hour = (int) (day_remain / 3600L);
 				int hour_remain = (int) (day_remain % 3600L);
 				if (hour != 0) {
-					builder.append(hour + "時間");
+					builder.append(hour).append("時間");
 				}
 				int minute = (int) (hour_remain / 60L);
 				if (minute != 0) {
-					builder.append(minute + "分");
+					builder.append(minute).append("分");
 				}
 				int sec = (int) (hour_remain % 60L);
 				if (sec != 0) {
-					builder.append(sec + "秒");
+					builder.append(sec).append("秒");
 				}
 				String startTime = sdfFormat(new Date(afkplayer.getAFKStartTime() * 1000));
 				sender.sendMessage("[AFK]" + ChatColor.GREEN + "AFK開始時刻: " + startTime);
