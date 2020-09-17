@@ -70,6 +70,7 @@ public class Task_AFK extends BukkitRunnable {
 		}
 	}
 	void sendDebugSender(String message){
+		if(debugSender == null) return;
 		debugSender.sendMessage("[Task_AFK-DEBUG] " + ChatColor.GREEN + message);
 	}
 }
