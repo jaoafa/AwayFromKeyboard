@@ -16,6 +16,8 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
 
+import java.util.Objects;
+
 public class Main extends JavaPlugin {
 	static Main main;
 	static JDA JDA;
@@ -60,7 +62,7 @@ public class Main extends JavaPlugin {
 
 		if (config.contains("serverchatid")) {
 			ServerChatID = config.getString("serverchatid");
-			ServerChatChannel = JDA.getTextChannelById(ServerChatID);
+			ServerChatChannel = JDA.getTextChannelById(Objects.requireNonNull(ServerChatID));
 		}
 
 		if (!config.contains("sqlserver") || !config.contains("sqlport") || !config.contains("sqldatabase")
@@ -85,10 +87,10 @@ public class Main extends JavaPlugin {
 			return;
 		}
 
-		getCommand("afk").setExecutor(new Cmd_AFK());
-		getCommand("afkparticle").setExecutor(new Cmd_AFKParticle());
-		getCommand("afkparticle").setTabCompleter(new Cmd_AFKParticle());
-		getCommand("part").setExecutor(new Cmd_Part());
+		Objects.requireNonNull(getCommand("afk")).setExecutor(new Cmd_AFK());
+		Objects.requireNonNull(getCommand("afkparticle")).setExecutor(new Cmd_AFKParticle());
+		Objects.requireNonNull(getCommand("afkparticle")).setTabCompleter(new Cmd_AFKParticle());
+		Objects.requireNonNull(getCommand("part")).setExecutor(new Cmd_Part());
 
 		getServer().getPluginManager().registerEvents(new Event_AFK(), this);
 

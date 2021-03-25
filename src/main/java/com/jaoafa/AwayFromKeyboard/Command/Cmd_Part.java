@@ -10,9 +10,10 @@ import org.bukkit.entity.Player;
 import com.jaoafa.AwayFromKeyboard.Main;
 import com.jaoafa.AwayFromKeyboard.Library.AFKParticle;
 import com.jaoafa.AwayFromKeyboard.Task.Task_Part;
+import org.jetbrains.annotations.NotNull;
 
 public class Cmd_Part implements CommandExecutor {
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		if (args.length != 8) {
 			sender.sendMessage(
 					"Usage: /part <Particle> <Count> <Extra> <Tick> <OffsetX> <OffsetY> <OffsetZ> <SpawnOffset>");
@@ -42,7 +43,7 @@ public class Cmd_Part implements CommandExecutor {
 			} else if (sender instanceof BlockCommandSender) {
 				BlockCommandSender bcs = (BlockCommandSender) sender;
 
-				if (bcs.getBlock() == null || !(bcs.getBlock().getState() instanceof org.bukkit.block.CommandBlock)) {
+                if (!(bcs.getBlock().getState() instanceof org.bukkit.block.CommandBlock)) {
 					return true;
 				}
 				AFKParticle particle = AFKParticle.fromString(args[0]);

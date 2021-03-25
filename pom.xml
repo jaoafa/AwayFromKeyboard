@@ -56,11 +56,10 @@
 		</resources>
 	</build>
 	<repositories>
-		<!-- Spigot/Bukkit -->
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-		</repository>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
 		<repository>
 			<id>jcenter</id>
 			<url>https://jcenter.bintray.com</url>
@@ -76,18 +75,12 @@
 		</repository>
 	</repositories>
 	<dependencies>
-		<!--Spigot-API -->
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.12.2-R0.1-SNAPSHOT</version>
-		</dependency>
-		<!--Bukkit API -->
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.12.2-R0.1-SNAPSHOT</version>
-		</dependency>
+        <dependency>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
 		<!-- JDA -->
 		<dependency>
 			<groupId>net.dv8tion</groupId>
@@ -99,13 +92,6 @@
 					<artifactId>opus-java</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<!-- TitleAPI -->
-		<dependency>
-			<groupId>com.github.ConnorLinfoot</groupId>
-			<artifactId>TitleAPI</artifactId>
-			<version>1.7.6</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- jao Super Achievement2 -->
 		<dependency>

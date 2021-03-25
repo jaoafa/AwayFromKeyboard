@@ -14,10 +14,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.jaoafa.AwayFromKeyboard.Library.AFKPlayer;
+import org.jetbrains.annotations.NotNull;
 
 public class Cmd_AFK implements CommandExecutor {
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 		if (args.length >= 1 && args[0].equalsIgnoreCase("help")) {
 			return false;
 		}

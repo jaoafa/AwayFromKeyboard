@@ -12,7 +12,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-import com.connorlinfoot.titleapi.TitleAPI;
 import com.jaoafa.AwayFromKeyboard.Library.AFKPlayer;
 import com.jaoafa.jaoSuperAchievement2.API.AchievementAPI;
 import com.jaoafa.jaoSuperAchievement2.API.Achievementjao;
@@ -55,7 +54,7 @@ public class Event_AFK implements Listener {
 			return;
 		}
 		afkplayer.end();
-		TitleAPI.clearTitle(player);
+		player.resetTitle();
 	}
 
 	@EventHandler

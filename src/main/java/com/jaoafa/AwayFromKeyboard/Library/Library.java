@@ -34,7 +34,6 @@ public class Library {
 			AFKParticle.SPELL_MOB_AMBIENT,
 			AFKParticle.REDSTONE,
 			AFKParticle.WATER_BUBBLE,
-			AFKParticle.FOOTSTEP,
 			AFKParticle.SPIT,
 			AFKParticle.SPELL_MOB,
 			AFKParticle.SNOWBALL,
