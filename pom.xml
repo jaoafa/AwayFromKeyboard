@@ -69,10 +69,18 @@
 			<url>https://jitpack.io</url>
 		</repository>
 		<!-- jao Super Achievement2 -->
-		<repository>
-			<id>jSA2 maven-repo</id>
-			<url>https://raw.github.com/jaoafa/jao-Super-Achievement2/master/mvn-repo</url>
-		</repository>
+        <repository>
+            <id>github</id>
+            <name>GitHub jaoafa Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/jaoafa/jao-Super-Achievement2</url>
+            <!-- read:packages のみを許可した jaotan の Personal access token を使っています -->
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
 	</repositories>
 	<dependencies>
         <dependency>
@@ -94,12 +102,11 @@
 			</exclusions>
 		</dependency>
 		<!-- jao Super Achievement2 -->
-		<dependency>
-			<groupId>com.jaoafa</groupId>
-			<artifactId>jaoSuperAchievement2</artifactId>
-			<version>0.0.4</version>
-			<scope>provided</scope>
-		</dependency>
+        <dependency>
+            <groupId>com.jaoafa</groupId>
+            <artifactId>jaosuperachievement2</artifactId>
+            <version>c58ae19</version>
+        </dependency>
 	</dependencies>
 	<url>http://jaoafa.com/</url>
 </project>

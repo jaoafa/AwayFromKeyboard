@@ -2,9 +2,8 @@ package com.jaoafa.AwayFromKeyboard.Library;
 
 import com.jaoafa.AwayFromKeyboard.Main;
 import com.jaoafa.AwayFromKeyboard.Task.Task_AFKING;
-import com.jaoafa.jaoSuperAchievement2.API.AchievementAPI;
-import com.jaoafa.jaoSuperAchievement2.API.Achievementjao;
-import com.jaoafa.jaoSuperAchievement2.Lib.AchievementType;
+import com.jaoafa.jaosuperachievement2.api.Achievementjao;
+import com.jaoafa.jaosuperachievement2.lib.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -93,17 +92,11 @@ public class AFKPlayer {
 
         Plugin jsa = Bukkit.getPluginManager().getPlugin("jao-Super-Achievement2");
         if (jsa != null && jsa.isEnabled()) {
-            if (!Achievementjao.getAchievement(player, new AchievementType(31))) {
-                player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
-                return;
-            }
+            Achievementjao.getAchievementAsync(player, Achievement.BACKSOON);
         }
 
         if (player.hasPotionEffect(PotionEffectType.FIRE_RESISTANCE) && jsa != null && jsa.isEnabled()) {
-            if (!Achievementjao.getAchievement(player, new AchievementType(67))) {
-                player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
-                return;
-            }
+            Achievementjao.getAchievementAsync(player, Achievement.HOTAFK);
         }
 
         if (Main.ServerChatChannel() != null) {

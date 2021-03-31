@@ -1,5 +1,8 @@
 package com.jaoafa.AwayFromKeyboard.Event;
 
+import com.jaoafa.AwayFromKeyboard.Library.AFKPlayer;
+import com.jaoafa.jaosuperachievement2.api.Achievementjao;
+import com.jaoafa.jaosuperachievement2.lib.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,11 +14,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
-
-import com.jaoafa.AwayFromKeyboard.Library.AFKPlayer;
-import com.jaoafa.jaoSuperAchievement2.API.AchievementAPI;
-import com.jaoafa.jaoSuperAchievement2.API.Achievementjao;
-import com.jaoafa.jaoSuperAchievement2.Lib.AchievementType;
 
 public class Event_AFK implements Listener {
 	@EventHandler
@@ -36,10 +34,7 @@ public class Event_AFK implements Listener {
 		if (afkplayer.isAFK()) {
 			Plugin jsa = Bukkit.getPluginManager().getPlugin("jao-Super-Achievement2");
 			if (jsa != null && jsa.isEnabled()) {
-				if (!Achievementjao.getAchievement(player, new AchievementType(36))) {
-					player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
-					return;
-				}
+                Achievementjao.getAchievementAsync(player, Achievement.WEREYOUTHERE);
 			}
 		}
 		afkplayer.clear();
@@ -72,8 +67,6 @@ public class Event_AFK implements Listener {
 			return;
 		}
 
-		if (!Achievementjao.getAchievement(player, new AchievementType(40))) {
-			player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
-		}
+        Achievementjao.getAchievementAsync(player, Achievement.SOHOT);
 	}
 }

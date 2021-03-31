@@ -1,5 +1,7 @@
 package com.jaoafa.AwayFromKeyboard.Task;
 
+import com.jaoafa.jaosuperachievement2.api.Achievementjao;
+import com.jaoafa.jaosuperachievement2.lib.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -9,9 +11,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.jaoafa.AwayFromKeyboard.Library.AFKPlayer;
-import com.jaoafa.jaoSuperAchievement2.API.AchievementAPI;
-import com.jaoafa.jaoSuperAchievement2.API.Achievementjao;
-import com.jaoafa.jaoSuperAchievement2.Lib.AchievementType;
 
 public class Task_AFK extends BukkitRunnable {
 	CommandSender debugSender = null;
@@ -31,16 +30,10 @@ public class Task_AFK extends BukkitRunnable {
 				Plugin jsa = Bukkit.getPluginManager().getPlugin("jao-Super-Achievement2");
 				if (jsa != null && jsa.isEnabled()) {
 					if (afkplayer.getAFKingSec() >= 5 * 60) {
-						if (!Achievementjao.getAchievement(player, new AchievementType(32))) {
-							player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
-							return;
-						}
+                        Achievementjao.getAchievementAsync(player, Achievement.AWAYFORWHILE);
 					}
 					if (afkplayer.getAFKingSec() >= 15 * 60) {
-						if (!Achievementjao.getAchievement(player, new AchievementType(33))) {
-							player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
-							return;
-						}
+                        Achievementjao.getAchievementAsync(player, Achievement.DISAPPEARANCE);
 					}
 				}
 				sendDebugSender(player.getName() + ": isAFK = true -> skip");
