@@ -45,9 +45,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-commons:9.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-tree:9.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-analysis:9.0" level="project" />
-    <orderEntry type="library" name="Maven: net.dv8tion:JDA:4.2.0_180" level="project" />
+    <orderEntry type="library" name="Maven: net.dv8tion:JDA:4.2.0_252" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:16.0.1" level="project" />
-    <orderEntry type="library" name="Maven: com.neovisionaries:nv-websocket-client:2.9" level="project" />
+    <orderEntry type="library" name="Maven: com.neovisionaries:nv-websocket-client:2.14" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.13.0" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.17.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
@@ -55,15 +55,15 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jaoafa:jaosuperachievement2:c58ae19" level="project" />
-    <orderEntry type="library" name="Maven: cloud.commandframework:cloud-paper:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: io.leangen.geantyref:geantyref:1.3.11" level="project" />
-    <orderEntry type="library" name="Maven: cloud.commandframework:cloud-bukkit:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: cloud.commandframework:cloud-core:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: cloud.commandframework:cloud-services:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: cloud.commandframework:cloud-brigadier:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: cloud.commandframework:cloud-tasks:1.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.json:json:20200518" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.jaoafa:jaosuperachievement2:e3e8c06" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.commandframework:cloud-paper:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: io.leangen.geantyref:geantyref:1.3.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.commandframework:cloud-bukkit:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.commandframework:cloud-core:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.commandframework:cloud-services:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.commandframework:cloud-brigadier:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: cloud.commandframework:cloud-tasks:1.4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.json:json:20200518" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.commons:commons-lang3:3.11" level="project" />
   </component>
 </module>

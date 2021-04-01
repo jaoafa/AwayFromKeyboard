@@ -60,10 +60,11 @@
             <id>papermc-repo</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
-		<repository>
-			<id>jcenter</id>
-			<url>https://jcenter.bintray.com</url>
-		</repository>
+        <repository>
+            <id>dv8tion</id>
+            <name>m2-dv8tion</name>
+            <url>https://m2.dv8tion.net/releases</url>
+        </repository>
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
@@ -93,7 +94,7 @@
 		<dependency>
 			<groupId>net.dv8tion</groupId>
 			<artifactId>JDA</artifactId>
-			<version>4.2.0_180</version>
+			<version>4.2.0_252</version>
 			<exclusions>
 				<exclusion>
 					<groupId>club.minnced</groupId>
@@ -105,7 +106,8 @@
         <dependency>
             <groupId>com.jaoafa</groupId>
             <artifactId>jaosuperachievement2</artifactId>
-            <version>c58ae19</version>
+            <version>e3e8c06</version>
+            <scope>provided</scope>
         </dependency>
 	</dependencies>
 	<url>http://jaoafa.com/</url>
