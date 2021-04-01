@@ -42,6 +42,10 @@ public class Main extends JavaPlugin {
 			return;
 		}
 
+        if (config.contains("serverchatid")) {
+            ServerChatID = config.getString("serverchatid");
+        }
+
 		try {
 			JDABuilder jdabuilder = JDABuilder.createDefault(config.getString("discordtoken"))
 					.setAutoReconnect(true)
@@ -58,11 +62,6 @@ public class Main extends JavaPlugin {
 			getLogger().warning("AwayFromKeyboardプラグインを終了します。");
 			getServer().getPluginManager().disablePlugin(this);
 			return;
-		}
-
-		if (config.contains("serverchatid")) {
-			ServerChatID = config.getString("serverchatid");
-			ServerChatChannel = JDA.getTextChannelById(Objects.requireNonNull(ServerChatID));
 		}
 
 		if (!config.contains("sqlserver") || !config.contains("sqlport") || !config.contains("sqldatabase")

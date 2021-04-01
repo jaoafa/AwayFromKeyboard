@@ -106,7 +106,7 @@
         <dependency>
             <groupId>com.jaoafa</groupId>
             <artifactId>jaosuperachievement2</artifactId>
-            <version>e3e8c06</version>
+            <version>4116eef</version>
             <scope>provided</scope>
         </dependency>
 	</dependencies>
