@@ -14,6 +14,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -135,6 +139,8 @@ public class AFKPlayer {
 
         player.resetTitle();
 
+        addAFKTime();
+
         players.put(player.getName(), this);
 
         if (Main.ServerChatChannel() != null) {
@@ -159,6 +165,38 @@ public class AFKPlayer {
             return false;
         }
         return isAFKing;
+    }
+
+    void addAFKTime(){
+        try {
+            Connection conn = Main.getMySQLDBManager().getConnection();
+            boolean exists;
+            try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM afktime WHERE uuid = ?")) {
+                stmt.setString(1, player.getUniqueId().toString());
+                try (ResultSet res = stmt.executeQuery()) {
+                    exists = res.next();
+                }
+            }
+
+            if(exists){
+                // あれば加算
+                try (PreparedStatement stmt = conn.prepareStatement("UPDATE afktime SET seconds = seconds + ? WHERE uuid = ?")) {
+                    stmt.setLong(1, getAFKingSec());
+                    stmt.setString(2, player.getUniqueId().toString());
+                    stmt.executeUpdate();
+                }
+            }else{
+                // なければ作成
+                try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO afktime (player, uuid, seconds, created_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP)")) {
+                    stmt.setString(1, player.getName());
+                    stmt.setString(2, player.getUniqueId().toString());
+                    stmt.setLong(3, getAFKingSec());
+                    stmt.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public long getAFKingSec() {

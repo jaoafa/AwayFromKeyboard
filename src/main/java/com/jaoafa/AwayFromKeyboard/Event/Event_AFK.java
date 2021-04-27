@@ -20,11 +20,10 @@ public class Event_AFK implements Listener {
 	public void onPlayerMoveEvent(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		AFKPlayer afkplayer = new AFKPlayer(player);
-		afkplayer.setNowLastActionTime();
-		if (!afkplayer.isAFK()) {
-			return;
+		if (afkplayer.isAFK()) {
+            afkplayer.end();
 		}
-		afkplayer.end();
+        afkplayer.setNowLastActionTime();
 	}
 
 	@EventHandler
@@ -44,11 +43,10 @@ public class Event_AFK implements Listener {
 	public void OnEvent_PlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		AFKPlayer afkplayer = new AFKPlayer(player);
-		afkplayer.setNowLastActionTime();
-		if (!afkplayer.isAFK()) {
-			return;
-		}
-		afkplayer.end();
+        if (afkplayer.isAFK()) {
+            afkplayer.end();
+        }
+        afkplayer.setNowLastActionTime();
 		player.resetTitle();
 	}
 
