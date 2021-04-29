@@ -94,7 +94,7 @@
 		<dependency>
 			<groupId>net.dv8tion</groupId>
 			<artifactId>JDA</artifactId>
-			<version>4.2.0_252</version>
+			<version>4.2.1_262</version>
 			<exclusions>
 				<exclusion>
 					<groupId>club.minnced</groupId>
@@ -106,7 +106,7 @@
         <dependency>
             <groupId>com.jaoafa</groupId>
             <artifactId>jaosuperachievement2</artifactId>
-            <version>e98fce0</version>
+            <version>8a87c23</version>
             <scope>provided</scope>
         </dependency>
 	</dependencies>
