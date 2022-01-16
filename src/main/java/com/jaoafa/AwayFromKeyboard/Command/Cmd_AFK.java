@@ -87,7 +87,7 @@ public class Cmd_AFK implements CommandExecutor {
 				}
 				String startTime = sdfFormat(new Date(afkplayer.getAFKStartTime() * 1000));
 				sender.sendMessage("[AFK] " + ChatColor.GREEN + "AFK開始時刻: " + startTime);
-				sender.sendMessage("[AFK] " + ChatColor.GREEN + "AFK経過時間: " + builder.toString());
+				sender.sendMessage("[AFK] " + ChatColor.GREEN + "AFK経過時間: " + builder);
 			} else {
 				sender.sendMessage("[AFK] " + ChatColor.GREEN + "指定されたプレイヤー「" + player.getName() + "」は現在AFKではありません。");
 				if (afkplayer.getLastActionTime() != -1L) {
@@ -100,12 +100,11 @@ public class Cmd_AFK implements CommandExecutor {
 			}
 			return true;
 		}
-		if (!(sender instanceof Player)) {
+		if (!(sender instanceof Player player)) {
 			sender.sendMessage("[AFK] " + ChatColor.GREEN + "このコマンドはゲーム内から実行してください。");
 			return true;
 		}
-		Player player = (Player) sender;
-		AFKPlayer afkplayer = new AFKPlayer(player);
+        AFKPlayer afkplayer = new AFKPlayer(player);
 		if (!afkplayer.isAFK()) {
 			afkplayer.start();
 		} else {

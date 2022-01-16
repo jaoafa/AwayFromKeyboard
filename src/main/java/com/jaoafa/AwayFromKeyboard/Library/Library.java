@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-	static AFKParticle[] particles = new AFKParticle[] {
+	static final AFKParticle[] particles = new AFKParticle[] {
 			AFKParticle.FLAME,
 			AFKParticle.LAVA,
 			AFKParticle.VILLAGER_ANGRY,

@@ -52,11 +52,10 @@ public class Event_AFK implements Listener {
 
 	@EventHandler
 	public void OnEvent_InvClose(InventoryCloseEvent event) {
-		if (!(event.getPlayer() instanceof Player)) {
+		if (!(event.getPlayer() instanceof Player player)) {
 			return;
 		}
-		Player player = (Player) event.getPlayer();
-		AFKPlayer afkplayer = new AFKPlayer(player);
+        AFKPlayer afkplayer = new AFKPlayer(player);
 		if (!afkplayer.isAFK()) {
 			return;
 		}

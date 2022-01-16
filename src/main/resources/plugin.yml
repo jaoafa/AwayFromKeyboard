@@ -4,6 +4,7 @@ version: debugVersion
 description: General Plugin Version 3
 author: mine_book000
 database: true
+api-version: 1.18.1
 commands:
   afk:
     description: AFK(Away From Keyboard)モードをオン・オフにします。

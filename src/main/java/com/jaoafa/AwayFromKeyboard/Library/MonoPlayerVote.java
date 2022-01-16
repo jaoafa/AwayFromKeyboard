@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import com.jaoafa.AwayFromKeyboard.Main;
 
 public class MonoPlayerVote {
-	static Map<UUID, MonoPlayerVote> data = new HashMap<>();
+	static final Map<UUID, MonoPlayerVote> data = new HashMap<>();
 
 	Player player;
 	int voteCount = 0;

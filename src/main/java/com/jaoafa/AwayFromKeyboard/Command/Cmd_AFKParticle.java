@@ -19,11 +19,10 @@ import java.util.stream.Collectors;
 public class Cmd_AFKParticle implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage("[AFKParticle] " + ChatColor.GREEN + "このコマンドはプレイヤーのみ使用できます。");
             return true;
         }
-        Player player = (Player) sender;
 
         MonoPlayerVote mpv = new MonoPlayerVote(player);
         AFKParticle[] availableParts = Library.getAvailableAFKParticle(mpv.getVoteCount());
@@ -60,10 +59,9 @@ public class Cmd_AFKParticle implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String alias, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return Main.getJavaPlugin().onTabComplete(sender, cmd, alias, args);
         }
-        Player player = (Player) sender;
         MonoPlayerVote mpv = new MonoPlayerVote(player);
         AFKParticle[] availableParts = Library.getAvailableAFKParticle(mpv.getVoteCount());
         if (args.length == 1) {

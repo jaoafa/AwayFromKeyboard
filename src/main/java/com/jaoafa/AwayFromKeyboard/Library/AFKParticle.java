@@ -1,6 +1,8 @@
 package com.jaoafa.AwayFromKeyboard.Library;
 
+import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.block.data.BlockData;
 
 public enum AFKParticle {
 	EXPLOSION_NORMAL(Particle.EXPLOSION_NORMAL, 20, 0.2, 2L, 0.3D, 1D, 0.3D, 0.1D),
@@ -37,12 +39,12 @@ public enum AFKParticle {
 	SNOW_SHOVEL(Particle.SNOW_SHOVEL, 30, 0, 2L, 0.4D, 0.4D, 0.4D, 3D),
     SLIME(Particle.SLIME, 10, 1, 1L, 0.5D, 0.1D, 0.5D, 0D),
     HEART(Particle.HEART, 4, 1, 5L, 0.5D, 0.1D, 0.5D, 2D),
-    BARRIER(Particle.BARRIER, 1, 1, 5L, 0.5D, 0.1D, 0.5D, 2D),
+    BARRIER(Particle.BLOCK_MARKER, 1, 1, 5L, 0.5D, 0.1D, 0.5D, 2D, Material.BARRIER.createBlockData()),
     ITEM_CRACK(Particle.ITEM_CRACK, 10, 0, 1L, 0.7D, 0.1D, 0.7D, 3D),
     BLOCK_CRACK(Particle.BLOCK_CRACK, 10, 0, 1L, 0.7D, 0.1D, 0.7D, 0D),
-	//BLOCK_DUST(Particle.BLOCK_DUST),
+	// BLOCK_DUST(Particle.BLOCK_DUST),
 	WATER_DROP(Particle.WATER_DROP, 50, 9, 3L, 0.7D, 0.5D, 0.7D, 0.1D),
-	//ITEM_TAKE(Particle.ITEM_TAKE),
+	// ITEM_TAKE(Particle.ITEM_TAKE),
 	DRAGON_BREATH(Particle.DRAGON_BREATH, 6, 0.1, 3L, 0.1D, 0.1D, 0.1D, 1.8D),
 	END_ROD(Particle.END_ROD, 9, 0.1, 3L, 0.5D, 0.1D, 0.5D, 1D),
 	DAMAGE_INDICATOR(Particle.DAMAGE_INDICATOR, 10, 0.5, 5L, 0.1D, 0.1D, 0.1D, 1D),
@@ -76,9 +78,28 @@ public enum AFKParticle {
     FALLING_OBSIDIAN_TEAR(Particle.FALLING_OBSIDIAN_TEAR, 3, 0.05, 1L, 0.3D, 0.1D, 0.3D, 2.5D),
     LANDING_OBSIDIAN_TEAR(Particle.LANDING_OBSIDIAN_TEAR, 10, 0.05, 1L, 0.6D, 0.1D, 0.1D, 2.5D),
     REVERSE_PORTAL(Particle.REVERSE_PORTAL, 30, 0.04, 1L, 0.1D, 0.1D, 0.1D, 0D),
-    WHITE_ASH(Particle.WHITE_ASH, 30, 0.01, 1L, 0.1D, 0.1D, 0.1D, 2.5D);
+    WHITE_ASH(Particle.WHITE_ASH, 30, 0.01, 1L, 0.1D, 0.1D, 0.1D, 2.5D),
+    // MOB_APPEARANCE(Particle.MOB_APPEARANCE),
+    DRIPPING_DRIPSTONE_LAVA(Particle.DRIPPING_DRIPSTONE_LAVA),
+    DRIPPING_DRIPSTONE_WATER(Particle.DRIPPING_DRIPSTONE_WATER),
+    ELECTRIC_SPARK(Particle.ELECTRIC_SPARK),
+    FALLING_DRIPSTONE_LAVA(Particle.FALLING_DRIPSTONE_LAVA),
+    FALLING_DRIPSTONE_WATER(Particle.FALLING_DRIPSTONE_WATER),
+    FALLING_SPORE_BLOSSOM(Particle.FALLING_SPORE_BLOSSOM),
+    FLASH(Particle.FLASH),
+    GLOW(Particle.GLOW),
+    GLOW_SQUID_INK(Particle.GLOW_SQUID_INK),
+    SCRAPE(Particle.SCRAPE),
+    SMALL_FLAME(Particle.SMALL_FLAME),
+    SPORE_BLOSSOM_AIR(Particle.SPORE_BLOSSOM_AIR),
+    WAX_OFF(Particle.WAX_OFF),
+    WAX_ON(Particle.WAX_ON),
+    // BLOCK_MARKER(Particle.BLOCK_MARKER),
+    // DUST_COLOR_TRANSITION(Particle.DUST_COLOR_TRANSITION),
+    // VIBRATION(Particle.VIBRATION),
+    ;
 
-	Particle particle;
+	final Particle particle;
 	int count = 1;
 	double extra = 0D;
 	double spawnOffset = 0D;
@@ -86,37 +107,10 @@ public enum AFKParticle {
 	double offsetY = 0.3D;
 	double offsetZ = 0.3D;
 	long tick = 5L;
+    BlockData blockData;
 
 	AFKParticle(Particle particle) {
 		this.particle = particle;
-	}
-
-	AFKParticle(Particle particle, int count) {
-		this.particle = particle;
-		this.count = count;
-	}
-
-	AFKParticle(Particle particle, int count, double extra) {
-		this.particle = particle;
-		this.count = count;
-		this.extra = extra;
-	}
-
-	AFKParticle(Particle particle, int count, double extra, long tick) {
-		this.particle = particle;
-		this.count = count;
-		this.extra = extra;
-		this.tick = tick;
-	}
-
-	AFKParticle(Particle particle, int count, double extra, long tick, double offsetX, double offsetY, double offsetZ) {
-		this.particle = particle;
-		this.count = count;
-		this.extra = extra;
-		this.tick = tick;
-		this.offsetX = offsetX;
-		this.offsetY = offsetY;
-		this.offsetZ = offsetZ;
 	}
 
 	AFKParticle(Particle particle, int count, double extra, long tick, double offsetX, double offsetY, double offsetZ,
@@ -131,7 +125,20 @@ public enum AFKParticle {
 		this.spawnOffset = spawnOffset;
 	}
 
-	public Particle getParticle() {
+    AFKParticle(Particle particle, int count, double extra, long tick, double offsetX, double offsetY, double offsetZ,
+                double spawnOffset, BlockData blockData) {
+        this.particle = particle;
+        this.count = count;
+        this.extra = extra;
+        this.tick = tick;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.offsetZ = offsetZ;
+        this.spawnOffset = spawnOffset;
+        this.blockData = blockData;
+    }
+
+    public Particle getParticle() {
 		return particle;
 	}
 

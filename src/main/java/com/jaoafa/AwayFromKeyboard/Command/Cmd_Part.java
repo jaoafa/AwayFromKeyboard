@@ -27,10 +27,9 @@ public class Cmd_Part implements CommandExecutor {
 			double offsetY = Double.parseDouble(args[5]);
 			double offsetZ = Double.parseDouble(args[6]);
 			double spawnOffset = Double.parseDouble(args[7]);
-			if (sender instanceof Player) {
-				Player player = (Player) sender;
+			if (sender instanceof Player player) {
 
-				AFKParticle particle = AFKParticle.fromString(args[0]);
+                AFKParticle particle = AFKParticle.fromString(args[0]);
 				if (particle == null) {
 					sender.sendMessage("指定されたパーティクルは非対応か存在しません。");
 					return true;
@@ -40,8 +39,7 @@ public class Cmd_Part implements CommandExecutor {
 
 				(new Task_Part(loc, particle, count, extra, offsetX, offsetY, offsetZ, spawnOffset))
 						.runTaskTimer(Main.getJavaPlugin(), 0L, tick);
-			} else if (sender instanceof BlockCommandSender) {
-				BlockCommandSender bcs = (BlockCommandSender) sender;
+			} else if (sender instanceof BlockCommandSender bcs) {
 
                 if (!(bcs.getBlock().getState() instanceof org.bukkit.block.CommandBlock)) {
 					return true;

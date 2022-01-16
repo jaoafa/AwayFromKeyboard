@@ -4,8 +4,13 @@ import com.jaoafa.AwayFromKeyboard.Main;
 import com.jaoafa.AwayFromKeyboard.Task.Task_AFKING;
 import com.jaoafa.jaosuperachievement2.api.Achievementjao;
 import com.jaoafa.jaosuperachievement2.lib.Achievement;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.title.Title;
+import net.kyori.adventure.title.TitlePart;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,12 +23,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AFKPlayer {
-    static Map<String, AFKPlayer> players = new HashMap<>();
+    static final Map<String, AFKPlayer> players = new HashMap<>();
 
     private final Player player;
     private boolean isAFKing = false;
@@ -64,20 +70,21 @@ public class AFKPlayer {
         player.getInventory().setHelmet(new ItemStack(Material.ICE));
         player.updateInventory();
 
-        String listname = player.getPlayerListName().replaceAll(player.getName(),
-            ChatColor.DARK_GRAY + player.getName());
-        player.setPlayerListName(listname);
+        player.playerListName(player.playerListName()
+            .replaceText(TextReplacementConfig
+                .builder()
+                .matchLiteral(player.getName())
+                .replacement(Component.text(player.getName(), NamedTextColor.DARK_GRAY))
+                .build()));
 
-        player.sendTitle(ChatColor.RED + "AFK NOW!",
-            ChatColor.BLUE + "" + ChatColor.BOLD + "When you are back, please enter the command '/afk' or Move.",
-            0,
-            Integer.MAX_VALUE,
-            0);
+        player.sendTitlePart(TitlePart.TITLE, Component.text("AFK NOW!", NamedTextColor.RED));
+        player.sendTitlePart(TitlePart.SUBTITLE, Component.text("When you are back, please enter the command '/afk' or Move.", NamedTextColor.RED, TextDecoration.BOLD));
+        player.sendTitlePart(TitlePart.TIMES, Title.Times.of(Duration.ZERO, Duration.ofSeconds(Long.MAX_VALUE), Duration.ZERO));
 
         if (message != null) {
-            Bukkit.broadcastMessage(ChatColor.DARK_GRAY + player.getName() + " is afk! (" + message + ")");
+            Bukkit.getServer().broadcast(Component.text("%s is afk! (%s)".formatted(player.getName(), message), NamedTextColor.DARK_GRAY));
         } else {
-            Bukkit.broadcastMessage(ChatColor.DARK_GRAY + player.getName() + " is afk!");
+            Bukkit.getServer().broadcast(Component.text(player.getName() + " is afk!", NamedTextColor.DARK_GRAY));
         }
         this.message = message;
 
@@ -132,12 +139,16 @@ public class AFKPlayer {
         }
         HeadItem = null;
 
-        String listname = player.getPlayerListName().replaceAll(player.getName(), ChatColor.WHITE + player.getName());
-        player.setPlayerListName(listname);
-
-        Bukkit.broadcastMessage(ChatColor.DARK_GRAY + player.getName() + " is now online!");
+        player.playerListName(player.playerListName()
+            .replaceText(TextReplacementConfig
+                .builder()
+                .match(player.getName())
+                .replacement(Component.text(player.getName(), NamedTextColor.WHITE))
+                .build()));
 
         player.resetTitle();
+
+        Bukkit.getServer().broadcast(Component.text("%s is now online!".formatted(player.getName()), NamedTextColor.DARK_GRAY));
 
         addAFKTime();
 

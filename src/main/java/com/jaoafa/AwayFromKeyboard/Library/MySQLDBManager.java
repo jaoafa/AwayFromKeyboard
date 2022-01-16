@@ -1,10 +1,13 @@
 package com.jaoafa.AwayFromKeyboard.Library;
 
+import com.jaoafa.AwayFromKeyboard.Main;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 public class MySQLDBManager {
 	private final String user;
@@ -27,13 +30,14 @@ public class MySQLDBManager {
 	}
 
 	public Connection getConnection() throws SQLException {
+        Logger logger = Main.getMain().getLogger();
 		if (conn != null && !conn.isClosed() && conn.isValid(5)) {
 			if (WAIT_TIMEOUT != -1 && LAST_PACKET != -1) {
 				long diff = (System.currentTimeMillis() - LAST_PACKET) / 1000;
 				if (diff < WAIT_TIMEOUT) {
 					return conn;
 				} else {
-					System.out.println("MySQL TIMEOUT! WAIT_TIMEOUT: " + WAIT_TIMEOUT + " / DIFF: " + diff);
+                    logger.info("MySQL TIMEOUT! WAIT_TIMEOUT: " + WAIT_TIMEOUT + " / DIFF: " + diff);
 				}
 			}
 			LAST_PACKET = System.currentTimeMillis();
@@ -43,7 +47,7 @@ public class MySQLDBManager {
 				+ "?autoReconnect=true&useUnicode=true&characterEncoding=utf8";
 		conn = DriverManager.getConnection(jdbcUrl, this.user, this.password);
 		if (WAIT_TIMEOUT == -1) {
-			getWaitTimeout();
+            WAIT_TIMEOUT = getWaitTimeout();
 		}
 		LAST_PACKET = System.currentTimeMillis();
 		conn.setHoldability(ResultSet.CLOSE_CURSORS_AT_COMMIT);
@@ -51,13 +55,14 @@ public class MySQLDBManager {
 	}
 
 	long getWaitTimeout() {
+        Logger logger = Main.getMain().getLogger();
 		try {
 			Connection conn = getConnection();
 			PreparedStatement statement = conn.prepareStatement("show variables like 'wait_timeout'");
 			ResultSet res = statement.executeQuery();
 			if (res.next()) {
 				WAIT_TIMEOUT = res.getInt("Value");
-				System.out.println("MySQL WAIT_TIMEOUT: " + WAIT_TIMEOUT);
+                logger.info("MySQL WAIT_TIMEOUT: " + WAIT_TIMEOUT);
 			} else {
 				WAIT_TIMEOUT = -1;
 			}

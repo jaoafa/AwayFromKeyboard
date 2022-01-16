@@ -111,4 +111,8 @@ public class Main extends JavaPlugin {
 	public static MySQLDBManager getMySQLDBManager() {
 		return MySQLDBManager;
 	}
+
+    public static Main getMain(){
+        return main;
+    }
 }

@@ -8,13 +8,13 @@ import com.jaoafa.AwayFromKeyboard.Library.AFKParticle;
 public class Task_Part extends BukkitRunnable {
 	private final Location loc;
 	private final AFKParticle particle;
-	int count;
-	double extra;
-	double offsetX;
-	double offsetY;
-	double offsetZ;
-	double SpawnOffset;
-	long startTime;
+	final int count;
+	final double extra;
+	final double offsetX;
+	final double offsetY;
+	final double offsetZ;
+	final double SpawnOffset;
+	final long startTime;
 
 	public Task_Part(Location loc, AFKParticle particle, int count, double extra, double offsetX, double offsetY,
 			double offsetZ, double SpawnOffset) {

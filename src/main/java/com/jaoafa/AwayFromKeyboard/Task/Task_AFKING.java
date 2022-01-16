@@ -1,6 +1,8 @@
 package com.jaoafa.AwayFromKeyboard.Task;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -36,10 +38,14 @@ public class Task_AFKING extends BukkitRunnable {
 		}
 		player.getWorld().spawnParticle(particle.getParticle(), loc, particle.getCount(),
 				particle.getOffsetX(), particle.getOffsetY(), particle.getOffsetZ(), particle.getExtra());
-		String listname = player.getPlayerListName();
-		if (!listname.contains(ChatColor.DARK_GRAY + player.getName())) {
-			listname = listname.replaceAll(player.getName(), ChatColor.DARK_GRAY + player.getName());
-			player.setPlayerListName(listname);
-		}
+
+        if(!player.playerListName().contains(Component.text(player.getName(), NamedTextColor.DARK_GRAY))) {
+            player.playerListName(player.playerListName()
+                .replaceText(TextReplacementConfig
+                    .builder()
+                    .match(player.getName())
+                    .replacement(Component.text(player.getName(), NamedTextColor.DARK_GRAY))
+                    .build()));
+        }
 	}
 }
