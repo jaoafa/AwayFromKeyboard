@@ -1,6 +1,6 @@
 name: AwayFromKeyboard
 main: com.jaoafa.AwayFromKeyboard.Main
-version: debugVersion
+version: ${project.version}
 description: General Plugin Version 3
 author: mine_book000
 database: true
