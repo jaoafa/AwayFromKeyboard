@@ -1,10 +1,10 @@
 name: AwayFromKeyboard
 main: com.jaoafa.AwayFromKeyboard.Main
 version: ${project.version}
-description: General Plugin Version 3
+description: This is a plugin that displays particles around the player who has not moved for a certain period of time in jao Minecraft Server as "AFK".
 author: mine_book000
 database: true
-api-version: 1.18.1
+api-version: 1.18
 commands:
   afk:
     description: AFK(Away From Keyboard)モードをオン・オフにします。
