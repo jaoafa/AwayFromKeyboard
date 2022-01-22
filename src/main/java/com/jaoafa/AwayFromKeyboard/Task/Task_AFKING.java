@@ -35,8 +35,13 @@ public class Task_AFKING extends BukkitRunnable {
         if (particle.getSpawnOffset() != 0D) {
             loc = loc.add(0D, particle.getSpawnOffset(), 0D);
         }
-        player.getWorld().spawnParticle(particle.getParticle(), loc, particle.getCount(),
-            particle.getOffsetX(), particle.getOffsetY(), particle.getOffsetZ(), particle.getExtra());
+        if (particle.getBlockData() != null) {
+            player.getWorld().spawnParticle(particle.getParticle(), loc, particle.getCount(),
+                particle.getOffsetX(), particle.getOffsetY(), particle.getOffsetZ(), particle.getExtra());
+        } else {
+            player.getWorld().spawnParticle(particle.getParticle(), loc, particle.getCount(),
+                particle.getOffsetX(), particle.getOffsetY(), particle.getOffsetZ(), particle.getExtra(), particle.getBlockData());
+        }
 
         if (!player.playerListName().contains(Component.text(player.getName(), NamedTextColor.DARK_GRAY))) {
             player.playerListName(player.playerListName()

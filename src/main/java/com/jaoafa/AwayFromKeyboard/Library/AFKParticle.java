@@ -107,7 +107,7 @@ public enum AFKParticle {
     double offsetY = 0.3D;
     double offsetZ = 0.3D;
     long tick = 5L;
-    BlockData blockData;
+    BlockData blockData = null;
 
     AFKParticle(Particle particle) {
         this.particle = particle;
@@ -168,6 +168,10 @@ public enum AFKParticle {
 
     public long getTick() {
         return tick;
+    }
+
+    public BlockData getBlockData() {
+        return blockData;
     }
 
     public static AFKParticle fromString(String str) {
