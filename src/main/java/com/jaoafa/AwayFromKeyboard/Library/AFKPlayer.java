@@ -24,7 +24,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -179,7 +178,7 @@ public class AFKPlayer {
         return isAFKing;
     }
 
-    void addAFKTime(){
+    void addAFKTime() {
         try {
             Connection conn = Main.getMySQLDBManager().getConnection();
             boolean exists;
@@ -190,14 +189,14 @@ public class AFKPlayer {
                 }
             }
 
-            if(exists){
+            if (exists) {
                 // あれば加算
                 try (PreparedStatement stmt = conn.prepareStatement("UPDATE afktime SET seconds = seconds + ? WHERE uuid = ?")) {
                     stmt.setLong(1, getAFKingSec());
                     stmt.setString(2, player.getUniqueId().toString());
                     stmt.executeUpdate();
                 }
-            }else{
+            } else {
                 // なければ作成
                 try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO afktime (player, uuid, seconds, created_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP)")) {
                     stmt.setString(1, player.getName());

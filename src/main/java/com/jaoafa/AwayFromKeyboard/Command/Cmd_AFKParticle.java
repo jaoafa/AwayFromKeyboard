@@ -28,10 +28,7 @@ public class Cmd_AFKParticle implements CommandExecutor, TabCompleter {
         AFKParticle[] availableParts = Library.getAvailableAFKParticle(mpv.getVoteCount());
 
         if (args.length == 0) {
-            sender.sendMessage(
-                "[AFKParticle] " + ChatColor.GREEN + "次のパーティクルが設定できます: "
-                    + Arrays.stream(availableParts).map(Enum::name)
-                    .collect(Collectors.joining(", ")));
+            sender.sendMessage("[AFKParticle] " + ChatColor.GREEN + "次のパーティクルが設定できます: " + Arrays.stream(availableParts).map(Enum::name).collect(Collectors.joining(", ")));
             return true;
         }
 
@@ -65,10 +62,7 @@ public class Cmd_AFKParticle implements CommandExecutor, TabCompleter {
         MonoPlayerVote mpv = new MonoPlayerVote(player);
         AFKParticle[] availableParts = Library.getAvailableAFKParticle(mpv.getVoteCount());
         if (args.length == 1) {
-            return Arrays.stream(availableParts)
-                .map(Enum::name)
-                .filter(name -> name.toUpperCase().startsWith(args[0].toUpperCase()))
-                .collect(Collectors.toList());
+            return Arrays.stream(availableParts).map(Enum::name).filter(name -> name.toUpperCase().startsWith(args[0].toUpperCase())).collect(Collectors.toList());
         }
         return Arrays.stream(availableParts).map(Enum::name).collect(Collectors.toList());
     }
