@@ -24,6 +24,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,7 +80,7 @@ public class AFKPlayer {
 
         player.sendTitlePart(TitlePart.TITLE, Component.text("AFK NOW!", NamedTextColor.RED));
         player.sendTitlePart(TitlePart.SUBTITLE, Component.text("When you are back, please enter the command '/afk' or Move.", NamedTextColor.RED, TextDecoration.BOLD));
-        player.sendTitlePart(TitlePart.TIMES, Title.Times.of(Duration.ZERO, Duration.ofSeconds(Long.MAX_VALUE), Duration.ZERO));
+        player.sendTitlePart(TitlePart.TIMES, Title.Times.of(Duration.ZERO, ChronoUnit.FOREVER.getDuration(), Duration.ZERO));
 
         if (message != null) {
             Bukkit.getServer().broadcast(Component.text("%s is afk! (%s)".formatted(player.getName(), message), NamedTextColor.DARK_GRAY));
