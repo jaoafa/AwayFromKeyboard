@@ -16,54 +16,54 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 public class Event_AFK implements Listener {
-	@EventHandler
-	public void onPlayerMoveEvent(PlayerMoveEvent event) {
-		Player player = event.getPlayer();
-		AFKPlayer afkplayer = new AFKPlayer(player);
-		if (afkplayer.isAFK()) {
-            afkplayer.end();
-		}
-        afkplayer.setNowLastActionTime();
-	}
-
-	@EventHandler
-	public void OnEvent_PlayerQuit(PlayerQuitEvent event) {
-		Player player = event.getPlayer();
-		AFKPlayer afkplayer = new AFKPlayer(player);
-		if (afkplayer.isAFK()) {
-			Plugin jsa = Bukkit.getPluginManager().getPlugin("jao-Super-Achievement2");
-			if (jsa != null && jsa.isEnabled()) {
-                Achievementjao.getAchievementAsync(player, Achievement.WEREYOUTHERE);
-			}
-		}
-		afkplayer.clear();
-	}
-
-	@EventHandler
-	public void OnEvent_PlayerJoin(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
-		AFKPlayer afkplayer = new AFKPlayer(player);
+    @EventHandler
+    public void onPlayerMoveEvent(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        AFKPlayer afkplayer = new AFKPlayer(player);
         if (afkplayer.isAFK()) {
             afkplayer.end();
         }
         afkplayer.setNowLastActionTime();
-		player.resetTitle();
-	}
+    }
 
-	@EventHandler
-	public void OnEvent_InvClose(InventoryCloseEvent event) {
-		if (!(event.getPlayer() instanceof Player player)) {
-			return;
-		}
+    @EventHandler
+    public void OnEvent_PlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
         AFKPlayer afkplayer = new AFKPlayer(player);
-		if (!afkplayer.isAFK()) {
-			return;
-		}
-		ItemStack is = player.getInventory().getHelmet();
-		if (is != null && is.getType() == Material.ICE) {
-			return;
-		}
+        if (afkplayer.isAFK()) {
+            Plugin jsa = Bukkit.getPluginManager().getPlugin("jao-Super-Achievement2");
+            if (jsa != null && jsa.isEnabled()) {
+                Achievementjao.getAchievementAsync(player, Achievement.WEREYOUTHERE);
+            }
+        }
+        afkplayer.clear();
+    }
+
+    @EventHandler
+    public void OnEvent_PlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        AFKPlayer afkplayer = new AFKPlayer(player);
+        if (afkplayer.isAFK()) {
+            afkplayer.end();
+        }
+        afkplayer.setNowLastActionTime();
+        player.resetTitle();
+    }
+
+    @EventHandler
+    public void OnEvent_InvClose(InventoryCloseEvent event) {
+        if (!(event.getPlayer() instanceof Player player)) {
+            return;
+        }
+        AFKPlayer afkplayer = new AFKPlayer(player);
+        if (!afkplayer.isAFK()) {
+            return;
+        }
+        ItemStack is = player.getInventory().getHelmet();
+        if (is != null && is.getType() == Material.ICE) {
+            return;
+        }
 
         Achievementjao.getAchievementAsync(player, Achievement.SOHOT);
-	}
+    }
 }
