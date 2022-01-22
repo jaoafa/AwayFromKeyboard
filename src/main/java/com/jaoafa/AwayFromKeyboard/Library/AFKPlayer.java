@@ -80,7 +80,7 @@ public class AFKPlayer {
 
         player.sendTitlePart(TitlePart.TITLE, Component.text("AFK NOW!", NamedTextColor.RED));
         player.sendTitlePart(TitlePart.SUBTITLE, Component.text("When you are back, please enter the command '/afk' or Move.", NamedTextColor.RED, TextDecoration.BOLD));
-        player.sendTitlePart(TitlePart.TIMES, Title.Times.of(Duration.ZERO, ChronoUnit.FOREVER.getDuration(), Duration.ZERO));
+        player.sendTitlePart(TitlePart.TIMES, Title.Times.of(Duration.ZERO, Duration.ofSeconds(Integer.MAX_VALUE), Duration.ZERO));
 
         if (message != null) {
             Bukkit.getServer().broadcast(Component.text("%s is afk! (%s)".formatted(player.getName(), message), NamedTextColor.DARK_GRAY));
