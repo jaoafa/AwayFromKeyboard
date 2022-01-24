@@ -76,6 +76,19 @@ public class Library {
         AFKParticle.LANDING_OBSIDIAN_TEAR,
         AFKParticle.REVERSE_PORTAL,
         AFKParticle.WHITE_ASH,
+        AFKParticle.DRIPPING_DRIPSTONE_LAVA,
+        AFKParticle.DRIPPING_DRIPSTONE_WATER,
+        AFKParticle.ELECTRIC_SPARK,
+        AFKParticle.FALLING_DRIPSTONE_LAVA,
+        AFKParticle.FALLING_DRIPSTONE_WATER,
+        AFKParticle.FALLING_SPORE_BLOSSOM,
+        AFKParticle.GLOW,
+        AFKParticle.GLOW_SQUID_INK,
+        AFKParticle.SCRAPE,
+        AFKParticle.SMALL_FLAME,
+        AFKParticle.SPORE_BLOSSOM_AIR,
+        AFKParticle.WAX_OFF,
+        AFKParticle.WAX_ON,
     };
 
     /**
