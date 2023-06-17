@@ -57,16 +57,10 @@ jobs:
 
       - name: Deploy
         id: deployRequest
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: ${{ secrets.DEPLOY_URL }}
-          method: 'POST'
-          bearerToken: ${{ secrets.DEPLOY_KEY }}
-          ignoreStatusCodes: '500'
-          timeout: 600000
-
-      - name: Show Response
-        run: echo ${{ steps.deployRequest.outputs.response }}
+        run: |
+          response=$(curl -i -X POST -H 'Authorization: Bearer ${{ secrets.DEPLOY_KEY }}' "${{ secrets.DEPLOY_URL }}")
+          echo "$response"
+          echo "response=$response" >> $GITHUB_OUTPUT
 
       - name: Is Successful Deploy
         if: ${{ fromJson(steps.deployRequest.outputs.response).status == 'SUCCESSFUL' }}
@@ -83,7 +77,7 @@ jobs:
             https://github.com/${{ github.repository }}/releases/tag/${{ needs.maven-ci.outputs.tag }}
 
       - name: Is Failed Deploy
-        if: ${{ fromJson(steps.deployRequest.outputs.response).status == 'ERROR' }}
+        if: ${{ failure() }}
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -94,8 +88,7 @@ jobs:
             エラー内容は以下の通りです。
 
             ```
-            ${{ fromJson(steps.deployRequest.outputs.response).type }} (${{ fromJson(steps.deployRequest.outputs.response).type_ja }}) - ${{ fromJson(steps.deployRequest.outputs.response).status }} (${{ fromJson(steps.deployRequest.outputs.response).status_ja }})
-            ${{ fromJson(steps.deployRequest.outputs.response).message }}
+            ${{ steps.deployRequest.outputs.response }}
             ```
 
       - name: Is Successful Deploy
