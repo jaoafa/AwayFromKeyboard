@@ -75,6 +75,8 @@ jobs:
           EOF
 
           gh pr comment ${{ github.event.pull_request.number }} -R ${{ github.repository }} -F comment.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Is Failed Deploy
         if: ${{ failure() }}
@@ -93,6 +95,8 @@ jobs:
           EOF
 
           gh pr comment ${{ github.event.pull_request.number }} -R ${{ github.repository }} -F comment.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Is Successful Deploy
         if: ${{ success() }}
